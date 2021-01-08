@@ -96,7 +96,7 @@ def website_search():
 
     except KeyError:
         if website_entry.get() == '':
-            print("No Website Entered ")
+            messagebox.showinfo(title="Not Found", message=f"No Website entered")
         else:
             messagebox.showinfo(title="Not Found", message=f"No Website found for '{website_entry.get()}'")
 
@@ -106,7 +106,25 @@ def website_search():
 
 window = Tk()
 window.title("Password Manager")
-window.config(padx=20,pady=20, bg="white")
+window.config(padx=40,pady=40, bg="white")
+
+w=550
+h=400
+
+window.minsize(width=w, height=h)
+window.maxsize(width=w, height=h)
+
+# get screen width and height
+ws = window.winfo_screenwidth() # width of the screen
+hs = window.winfo_screenheight() # height of the screen
+
+# calculate x and y coordinates for the Tk root window
+x = (ws/2) - (w/2)
+y = (hs/2) - (h/2)
+
+# set the dimensions of the screen
+# and where it is placed
+window.geometry('%dx%d+%d+%d' % (w, h, x, y))
 
 canvas = Canvas(width=200,height=200, bg="white")
 
@@ -119,7 +137,7 @@ website_label.grid(column=0,row=2)
 website_entry = Entry(text="", width=21)
 website_entry.focus()
 website_entry.grid(column =1, row=2, columnspan=1)
-website_button = Button(text="Search", command=website_search)
+website_button = Button(text="Search", command=website_search, width=13)
 website_button.grid(column=2,row=2)
 
 email_label = Label(text="Email / Username")
